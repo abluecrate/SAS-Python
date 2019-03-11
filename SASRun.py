@@ -7,12 +7,6 @@ from colorama import init; init()
 from colorama import Fore, Back, Style
 logError = '\n[LOG]' + Fore.RED + Style.BRIGHT + ' [ERROR] ' + Style.RESET_ALL
 
-#--------------------------------------------------------------------------------------------------------
-ap = argparse.ArgumentParser()  # Intilialize Argument Parser
-ap.add_argument('-p', '--project', help = 'Project Path')
-args = vars(ap.parse_args())    # Gather Arguments
-#--------------------------------------------------------------------------------------------------------
-
 def runSAS(projectPath):
     if Path(projectPath).is_file():
         print('\n--------------------------------------------------------------------------')
@@ -24,6 +18,19 @@ def runSAS(projectPath):
         print('\n[LOG] SAS Project Complete')
     else:
         print(logError + 'PROJECT FILE NOT FOUND')
+
+#------------------------------------------------------------------------------------------------------------
+#############################################################################################################
+#------------------------------------------------------------------------------------------------------------        
         
-projectPath = args['project']
-runSAS(projectPath)
+def main():
+    #--------------------------------------------------------------------------------------------------------
+    ap = argparse.ArgumentParser()  # Intilialize Argument Parser
+    ap.add_argument('-p', '--project', help = 'Project Path')
+    args = vars(ap.parse_args())    # Gather Arguments
+    #--------------------------------------------------------------------------------------------------------        
+    projectPath = args['project']
+    runSAS(projectPath)
+
+if __name__ == '__main__':
+    main()
